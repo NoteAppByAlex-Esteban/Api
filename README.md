@@ -13,3 +13,6 @@ Servidor para aplicación de notas y actualización en tiempo real.
 
 - ASP.NET Core 7
 - SignalR (WebSockets)
+
+## Otras dependecias
+[Shared](https://github.com/Estebanespg/NoteAppShared)
