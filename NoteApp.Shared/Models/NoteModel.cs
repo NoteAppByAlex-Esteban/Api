@@ -7,7 +7,7 @@ namespace NoteApp.Shared.Models
     public class NoteModel
     {
         public int Id { get; set; }
-        public int Title { get; set; }
+        public string Title { get; set; }
         public string Description { get; set; }
         public byte[] Photo { get; set; }
 

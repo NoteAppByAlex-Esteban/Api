@@ -70,4 +70,71 @@ public class NoteController : Controller
 
 
 
+    /// <summary>
+    /// Obtiene una nota especifica
+    /// </summary>
+    /// <param name="token">Token</param>
+    [HttpGet("/one")]
+    public async Task<IActionResult> GetOne([FromHeader] int id, [FromHeader] string token)
+    {
+
+        var (isValid, userID) = Jwt.Validate(token);
+
+        if (!isValid)
+        {
+            return StatusCode(401, "Invalid Token");
+        }
+
+        var nota = await Data.Notes.GetOne(id);
+
+        if (nota.UserId != userID)
+            return StatusCode(401, new
+            {
+                message = "Esta nota no te pertenece"
+            });
+
+
+        return StatusCode(200, new
+        {
+            message = "Success",
+            Note = nota
+        });
+
+    }
+
+
+
+    /// <summary>
+    /// Actualizar una nota
+    /// </summary>
+    /// <param name="token">Token</param>
+    [HttpPatch]
+    public async Task<IActionResult> Update([FromHeader] string token, [FromBody] NoteModel model)
+    {
+
+        var (isValid, _) = Jwt.Validate(token);
+
+        if (!isValid)
+        {
+            return StatusCode(401, "Invalid Token");
+        }
+
+        var nota = await Data.Notes.Update(model);
+
+        if (nota)
+            return StatusCode(400, new
+            {
+                message = "This note can't be updated or doesn't exist"
+            });
+
+
+        return StatusCode(200, new
+        {
+            message = "Success"
+        });
+
+    }
+
+
+
 }
