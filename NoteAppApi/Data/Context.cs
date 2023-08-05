@@ -18,7 +18,7 @@ public class Context : DbContext
 
 
 
-    public Context(DbContextOptions<Context> options) : base(options) 
+    public Context(DbContextOptions<Context> options) : base(options)
     {
     }
 
@@ -31,22 +31,24 @@ public class Context : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
 
+
         // Nombre de las tabalas
         modelBuilder.Entity<UserModel>().ToTable("USERS");
         modelBuilder.Entity<NoteModel>().ToTable("NOTES");
 
-        // Configuracion de Users
-        modelBuilder.Entity<UserModel>().HasKey(u => u.User);
+        //// Configuracion de Users
+        //modelBuilder.Entity<UserModel>().HasKey(u => u.Id);
 
-        // Indices de Users
-        modelBuilder.Entity<UserModel>().HasIndex(u => u.Id);
+        //// Indices de Users
+        //modelBuilder.Entity<UserModel>().HasIndex(u => u.Id);
 
-        // Indices de notas
-        modelBuilder.Entity<NoteModel>().HasIndex(u => u.Id);
-        modelBuilder.Entity<NoteModel>().HasIndex(u => u.UserId);
+        //// Indices de notas
+        //modelBuilder.Entity<NoteModel>().HasIndex(u => u.Id);
+        //modelBuilder.Entity<NoteModel>().HasIndex(u => u.UserId);
 
         // Metodo base
         base.OnModelCreating(modelBuilder);
+
     }
 
 

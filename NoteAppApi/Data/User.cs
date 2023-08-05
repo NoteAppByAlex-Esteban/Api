@@ -23,10 +23,10 @@ internal class User
             context.DataBase.SaveChanges();
 
             // Retorna el ID del usuario
-            return user.Id;
+            return user.ID;
 
         }
-        catch
+        catch (Exception ex)
         {
             // Manejo del error
 
@@ -59,7 +59,7 @@ internal class User
             if (userData == null)
                 return new()
                 {
-                    Id = 0
+                    ID = 0
                 };
 
             return userData;
@@ -69,7 +69,7 @@ internal class User
 
         return new()
         {
-            Id = 0
+            ID = 0
         };
     }
 
@@ -90,7 +90,7 @@ internal class User
 
             // Obtener el usuario
             var user = await (from U in context.DataBase.Users
-                              where U.Id == id
+                              where U.ID == id
                               where U.State == States.Actived
                               select U).FirstOrDefaultAsync();
 
@@ -127,7 +127,7 @@ internal class User
 
             // Obtener el usuario
             var user = await (from U in context.DataBase.Users
-                              where U.Id == newData.Id
+                              where U.ID == newData.ID
                               where U.State == States.Actived
                               select U).FirstOrDefaultAsync();
 
@@ -152,7 +152,6 @@ internal class User
 
 
 
-
     /// <summary>
     /// Actualiza el estado de un usuario
     /// </summary>
@@ -168,7 +167,7 @@ internal class User
 
             // Obtener el usuario
             var user = await (from U in context.DataBase.Users
-                              where U.Id == id
+                              where U.ID == id
                               select U).FirstOrDefaultAsync();
 
             // Evaluar si existe

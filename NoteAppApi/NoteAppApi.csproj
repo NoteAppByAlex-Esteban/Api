@@ -18,4 +18,8 @@
     <ProjectReference Include="..\NoteApp.Shared\NoteApp.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>

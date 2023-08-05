@@ -11,6 +11,19 @@ using NoteAppApi.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAnyOrigin",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyHeader()
+                   .AllowAnyMethod();
+        });
+});
+
+
+
 string sql = builder.Configuration["ConnectionStrings:Release"] ?? "";
 if (sql.Length > 0)
 {
@@ -29,7 +42,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
+app.UseCors("AllowAnyOrigin");
 try
 {
     using var scope = app.Services.CreateScope();
@@ -45,7 +58,7 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 
-Conexion.SetString("jsjw");
+Conexion.SetString(sql);
 
 
 app.UseHttpsRedirection();

@@ -25,7 +25,7 @@ public class UserController : Controller
         }
 
         // Sobrescribe los datos
-        //model.Id = 0;
+        model.ID = 0;
         model.State = States.Actived;
 
         // Respuesta de la BD
@@ -52,9 +52,41 @@ public class UserController : Controller
 
 
 
+    /// <summary>
+    /// Login
+    /// </summary>
+    /// <param name="user">Usuario</param>
+    /// <param name="password">Contraseña</param>
+    [HttpGet]
+    public async Task<IActionResult> Login([FromQuery] string user, [FromQuery] string password)
+    {
+
+        // Valida los datos
+        if (string.IsNullOrWhiteSpace(user) || string.IsNullOrWhiteSpace(password))
+            return StatusCode(400, "Invalid Params");
+
+        // Obtiene un usuario
+        var userData = await Data.User.GetOne(user);
+
+        // Evalua la respuesta
+        if (userData == null || userData.ID <= 0)
+            return StatusCode(404, "Not found User");
+
+        // Evaluacion de la contraseña
+        if (userData.Password != password)
+            return StatusCode(401, "Invalid password");
+        
+        // Generacion del JWT
+        var token = new
+        {
+            User = userData,
+            Jwt = $"//{userData.ID}//"
+        };
+
+        // Respuesta satisfactoria
+        return StatusCode(200, token);
+
+    }
    
-
-
-
 
 }

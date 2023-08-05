@@ -17,7 +17,6 @@ public class Conexion
     {
         DbContextOptionsBuilder<Data.Context> options = new ();
         options.UseSqlServer(Connection);
-
         DataBase = new(options.Options);
     }
 
