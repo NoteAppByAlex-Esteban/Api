@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NoteApp.Shared\NoteApp.Shared.csproj" />
+    <ProjectReference Include="..\..\NoteApp.Shared\NoteApp.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

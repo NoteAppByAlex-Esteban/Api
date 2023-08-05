@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteAppApi", "NoteAppApi\NoteAppApi.csproj", "{01CB73DE-3B02-4B5B-8CCF-9242337BFB77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteAppApi", "NoteAppApi\NoteAppApi.csproj", "{01CB73DE-3B02-4B5B-8CCF-9242337BFB77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoteApp.Shared", "NoteApp.Shared\NoteApp.Shared.csproj", "{DD3F26FA-4225-4573-81E9-2659F045330A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoteApp.Shared", "..\NoteApp.Shared\NoteApp.Shared.csproj", "{FFB8418F-EE4B-48E7-AD40-3844EDF4EE92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,12 +20,12 @@ Global
 		{01CB73DE-3B02-4B5B-8CCF-9242337BFB77}.Release|Any CPU.Build.0 = Release|Any CPU
 		{01CB73DE-3B02-4B5B-8CCF-9242337BFB77}.Servidor2|Any CPU.ActiveCfg = Servidor2|Any CPU
 		{01CB73DE-3B02-4B5B-8CCF-9242337BFB77}.Servidor2|Any CPU.Build.0 = Servidor2|Any CPU
-		{DD3F26FA-4225-4573-81E9-2659F045330A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DD3F26FA-4225-4573-81E9-2659F045330A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DD3F26FA-4225-4573-81E9-2659F045330A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DD3F26FA-4225-4573-81E9-2659F045330A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DD3F26FA-4225-4573-81E9-2659F045330A}.Servidor2|Any CPU.ActiveCfg = Servidor2|Any CPU
-		{DD3F26FA-4225-4573-81E9-2659F045330A}.Servidor2|Any CPU.Build.0 = Servidor2|Any CPU
+		{FFB8418F-EE4B-48E7-AD40-3844EDF4EE92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFB8418F-EE4B-48E7-AD40-3844EDF4EE92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFB8418F-EE4B-48E7-AD40-3844EDF4EE92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFB8418F-EE4B-48E7-AD40-3844EDF4EE92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFB8418F-EE4B-48E7-AD40-3844EDF4EE92}.Servidor2|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFB8418F-EE4B-48E7-AD40-3844EDF4EE92}.Servidor2|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

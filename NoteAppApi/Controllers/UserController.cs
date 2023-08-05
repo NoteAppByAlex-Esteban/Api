@@ -1,4 +1,6 @@
-﻿namespace NoteAppApi.Controllers;
+﻿using NoteApp.Shared.Responses;
+
+namespace NoteAppApi.Controllers;
 
 
 [Route("user")]
@@ -11,15 +13,15 @@ public class UserController : Controller
     /// </summary>
     /// <param name="model">Modelo del usuario</param>
     [HttpPost]
-    public async Task<IActionResult> Create([FromBody] UserModel model)
+    public async Task<ActionResult<CreateResponse>> Create([FromBody] UserModel model)
     {
 
         // Validacion de campos
         if (string.IsNullOrWhiteSpace(model.User) || string.IsNullOrWhiteSpace(model.Password) || string.IsNullOrWhiteSpace(model.Name))
         {
-            return StatusCode(400, new
+            return StatusCode(400, new CreateResponse
             {
-                Id = 0,
+                LastID = 0,
                 Message = "Parametros invalidos"
             });
         }
@@ -34,17 +36,18 @@ public class UserController : Controller
         // Validación
         if (response <= 0)
         {
-            return StatusCode(400, new
+            return StatusCode(400, new CreateResponse
             {
-                Id = 0,
+                LastID = 0,
                 Message = "No se creo"
             });
         }
 
         // Correcto
-        return StatusCode(201, new
+        return StatusCode(201, new CreateResponse
         {
-            Id = response,
+            IsSuccess = true,
+            LastID = response,
             Message = "Ok"
         });
 
@@ -58,27 +61,37 @@ public class UserController : Controller
     /// <param name="user">Usuario</param>
     /// <param name="password">Contraseña</param>
     [HttpGet]
-    public async Task<IActionResult> Login([FromQuery] string user, [FromQuery] string password)
+    public async Task<ActionResult<AuthenticationResponse>> Login([FromQuery] string user, [FromQuery] string password)
     {
 
         // Valida los datos
         if (string.IsNullOrWhiteSpace(user) || string.IsNullOrWhiteSpace(password))
-            return StatusCode(400, "Invalid Params");
+            return StatusCode(400, new AuthenticationResponse
+            {
+                Message = "Invalid Params"
+            });
 
         // Obtiene un usuario
         var userData = await Data.User.GetOne(user);
 
         // Evalua la respuesta
         if (userData == null || userData.ID <= 0)
-            return StatusCode(404, "Not found User");
+            return StatusCode(404, new AuthenticationResponse
+            {
+                Message = "Not Found User"
+            });
 
         // Evaluacion de la contraseña
         if (userData.Password != password)
-            return StatusCode(401, "Invalid password");
-        
+            return StatusCode(401, new AuthenticationResponse
+            {
+                Message = "Invalid Password"
+            });
+
         // Generacion del JWT
-        var token = new
+        var token = new AuthenticationResponse
         {
+            IsSuccess = true,
             User = userData,
             Jwt = Services.Jwt.Generate(userData)
         };
