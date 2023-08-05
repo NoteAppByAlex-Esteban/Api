@@ -80,7 +80,7 @@ public class UserController : Controller
         var token = new
         {
             User = userData,
-            Jwt = $"//{userData.ID}//"
+            Jwt = Services.Jwt.Generate(userData)
         };
 
         // Respuesta satisfactoria
@@ -88,5 +88,6 @@ public class UserController : Controller
 
     }
    
+
 
 }
